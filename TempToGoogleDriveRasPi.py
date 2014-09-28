@@ -12,19 +12,11 @@ email = ('gausLabAnalysis@gmail.com',)
 password = ('1LikeB33s',)
 destinationEmail = ('p.nicovich@unsw.edu.au',)
 
-<<<<<<< HEAD
 TEMPFILEPATH = '/home/pi/TempDataRecords/'
-#TEMPFILEPATH = 'C:\\Users\\Rusty\\Dropbox\\Python\\ThreadTestData\\'
 
 deviceFPath = '/sys/bus/w1/devices/'
 
 CYCLE = (30,)
-=======
-# TEMPFILEPATH = '/home/pi/TempDataRecords/'
-TEMPFILEPATH = 'C:\\Users\\Rusty\\Dropbox\\Python\\ThreadTestData\\'
-
-CYCLE = (1,)
->>>>>>> 709df8cd3d60cfe93093e84434d401aa137c9f4c
 TEMPLIMITS = (18, 26)
 TEMPCHANGEPERHOUR = (1.0,)
 lastAlert = 0
@@ -49,21 +41,13 @@ class Notify(threading.Thread):
 			didNot = True
 			
 def read_temp_raw(device_file):
-<<<<<<< HEAD
 	f = open(deviceFPath + device_file + '/w1_slave', 'r')
-=======
-	f = open(device_file, 'r')
->>>>>>> 709df8cd3d60cfe93093e84434d401aa137c9f4c
 	lines = f.readlines()
 	f.close()
 	return lines
 		
 def read_temp(deviceNumber):
-<<<<<<< HEAD
 #	print deviceList[deviceNumber]
-=======
-	print deviceList[deviceNumber]
->>>>>>> 709df8cd3d60cfe93093e84434d401aa137c9f4c
 	lines = read_temp_raw(deviceID[deviceNumber])
 	while lines[0].strip()[-3:] != 'YES':
 		time.sleep(0.2)
@@ -95,29 +79,20 @@ class TempLog:
 	def ReadTemp(self, dv):
 		tempNow = read_temp(dv)
 			
-<<<<<<< HEAD
 		if tempNow > TEMPLIMITS[1]: # Notify of specific event occurance
 			N = Notify(tempNow, 'High')
 			N.start()
 		elif tempNow < TEMPLIMITS[0]:
 			N = Notify(tempNow, 'Low')
-=======
-		if tempNow[0] > TEMPLIMITS[1]: # Notify of specific event occurance
-			N = Notify(tempNow[0], 'High')
-			N.start()
-		elif tempNow[0] < TEMPLIMITS[0]:
-			N = Notify(tempNow[0], 'Low')
->>>>>>> 709df8cd3d60cfe93093e84434d401aa137c9f4c
-			N.start()
 			# elif case for deltaTemp notification
 			
 			
 		now = datetime.datetime.now()
-<<<<<<< HEAD
+
 		return now.isoformat() + '\t' + deviceList[dv] + '\t' + str(tempNow) + '\n'
-=======
-		return now.isoformat() + '\t' + deviceList[dv] + '\t' + str(tempNow[0]) + '\n'
->>>>>>> 709df8cd3d60cfe93093e84434d401aa137c9f4c
+
+
+
 		
 	
 	def run(self):
@@ -128,10 +103,9 @@ class TempLog:
 			for dv in deviceList:
 				toWrite = self.ReadTemp(dv)
 				f.write(toWrite)
-<<<<<<< HEAD
 				print toWrite
-=======
->>>>>>> 709df8cd3d60cfe93093e84434d401aa137c9f4c
+
+
 			
 			f.close()
 			
@@ -183,7 +157,7 @@ def SendAndDeleteFile(filePath):
 
 if __name__ == '__main__':
 	filePath = TEMPFILEPATH
-<<<<<<< HEAD
+
 	#for n in range(3):
 	#	f = MakeDataFile(filePath)
 	#	c = TempLog(f)
@@ -218,19 +192,4 @@ if __name__ == '__main__':
 		
 	t.join()
 	fthread.join()
-=======
-	for n in range(1):
-		f = MakeDataFile(filePath)
-		c = TempLog(f)
-		t = threading.Thread(target=c.run)
-		t.start()
-		time.sleep(5)
-		c.terminate() # Signal termination
 
-		fthread = threading.Thread(target=SendAndDeleteFile, args=(f,))
-		fthread.start()
-		
-		
-	t.join()
-	fthread.join()
->>>>>>> 709df8cd3d60cfe93093e84434d401aa137c9f4c

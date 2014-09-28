@@ -2,7 +2,7 @@
 #
 # Periodically read temperature from 1-wire probe
 # Save a week's worth to text file
-# Every Sunday at 2 AM email report 
+# Every Sunday at 10 PM email report 
 # Push log to network storage
 # Email on low temp, high temp, or temp change alert
  

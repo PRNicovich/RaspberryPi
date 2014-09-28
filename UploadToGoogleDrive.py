@@ -97,8 +97,12 @@ def internet_on():
 		return False
 
 def main():
+<<<<<<< HEAD
 	gdoc = GoogleDriveFileUpload('/home/pi/DataForGoogleDrive.txt', 'TemperatureDataRecords', 'GausLabAnalysis', '1LikeB33s')
 #	gdoc = GoogleDriveFileUpload('C:\\Users\\Rusty\\quickstart-python\\document2.txt', 'TemperatureDataRecords', 'GausLabAnalysis', '1LikeB33s')	
+=======
+	gdoc = GoogleDriveFileUpload('C:\\Users\\Rusty\\quickstart-python\\document2.txt', 'TemperatureDataRecords', 'GausLabAnalysis', '1LikeB33s')	
+>>>>>>> 709df8cd3d60cfe93093e84434d401aa137c9f4c
 	if internet_on():
 		gdoc.upload()
 	
